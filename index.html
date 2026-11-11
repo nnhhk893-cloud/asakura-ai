@@ -32,8 +32,8 @@
       color: #333;
     }
   </style>
-  <!-- Coze Web SDK 公式スクリプト -->
-  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+  <!-- Coze Web SDK（パブリック公開用コード） -->
+  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-core/1.1.0-single/lib/index.js"></script>
   <script>
     new CozeWebSDK.WebChatClient({
       config: {
@@ -42,13 +42,6 @@
       componentProps: {
         title: '朝倉文夫＆キュレーター',
       },
-      auth: {
-        type: 'token',
-        token: 'pat_********',
-        onRefreshToken: function () {
-          return 'pat_********'
-        }
-      }
     });
   </script>
 </head>
