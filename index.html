@@ -100,26 +100,24 @@
       background-color: #ffffff;
       border-top: 1px solid #e2e8f0;
     }
- </style>
-  <!-- Coze Web SDK 公式スクリプト -->
-  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
-  <script>
-    new CozeWebSDK.WebChatClient({
-      config: {
-        bot_id: '7706099504453828661',
-      },
-      componentProps: {
-        title: 'Coze',
-      },
-      auth: {
-        type: 'token',
-        token: 'pat_********',
-        onRefreshToken: function () {
-          return 'pat_********'
-        }
+<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/1.2.0-beta.6/libs/oversea/index.js"></script>
+<script>
+  new CozeWebSDK.WebChatClient({
+    config: {
+      bot_id: '7706099504453828661',
+    },
+    componentProps: {
+      title: '朝倉文夫＆キュレーター',
+    },
+    auth: {
+      type: 'token',
+      token: 'pat_********',
+      onRefreshToken: function () {
+        return 'pat_********'
       }
-    });
-  </script>
+    }
+  });
+</script>
 </head>
 <body> 
   <!-- タイトル -->
