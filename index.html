@@ -31,20 +31,14 @@
       line-height: 1.6;
       color: #333;
     }
-    .chat-button {
-      display: inline-block;
-      padding: 15px 35px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #ffffff;
-      background-color: #2b6cb0;
-      border-radius: 30px;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.2s;
-    }
-    .chat-button:hover {
-      background-color: #1a4971;
+    .chat-iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background-color: #ffffff;
     }
   </style>
 </head>
@@ -55,12 +49,14 @@
     <img src="asuka.png" alt="アスカ" class="avatar">
   </div>
   <div class="description">
-    <p>このページでは、彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。下のボタンを押して、お気軽にチャットを開始してください。</p>
+    <p>このページでは、彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。下のチャット画面からお気軽にご質問ください。</p>
   </div>
 
-  <!-- 確実に動く会話スタートボタン -->
-  <a href="https://www.coze.com/store/bot/7706099504453828661" target="_blank" class="chat-button">
-    💬 朝倉文夫＆キュレーターAIと会話する
-  </a>
+  <!-- Cozeボット直接読み込み枠 -->
+  <iframe 
+    src="https://www.coze.com/space/7706099504453828661/bot/7706099504453828661" 
+    class="chat-iframe"
+    allow="microphone; camera">
+  </iframe>
 </body>
 </html>
