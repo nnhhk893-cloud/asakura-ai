@@ -9,54 +9,53 @@
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
-      padding: 20px;
+      padding: 50px 20px;
       background-color: #f4f4f4;
     }
-    .avatar-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
       margin-bottom: 20px;
     }
-    .avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .description {
-      max-width: 600px;
-      margin: 0 auto 20px auto;
+    p {
+      color: #666;
       line-height: 1.6;
-      color: #333;
+      margin-bottom: 30px;
     }
-    .chat-iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 600px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      background-color: #ffffff;
+    .chat-button {
+      display: inline-block;
+      padding: 16px 32px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #2b6cb0;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background-color 0.2s;
+    }
+    .chat-button:hover {
+      background-color: #1a4971;
     }
   </style>
 </head>
 <body>
-  <h1>朝倉文夫＆キュレーターAIガイドへようこそ！</h1>
-  <div class="avatar-container">
-    <img src="asakura.png" alt="朝倉文夫先生" class="avatar">
-    <img src="asuka.png" alt="アスカ" class="avatar">
+  <div class="container">
+    <h1>朝倉文夫＆キュレーターAIガイドへようこそ！</h1>
+    <p>彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。<br>下のボタンを押してチャットを開始してください。</p>
+    
+    <!-- Coze管理者画面直接起動ボタン -->
+    <a href="https://www.coze.com/space/7706099504453828661/bot/7706099504453828661" target="_blank" class="chat-button">
+      💬 朝倉文夫＆キュレーターAIと会話する
+    </a>
   </div>
-  <div class="description">
-    <p>このページでは、彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。下のチャット画面からお気軽にご質問ください。</p>
-  </div>
-
-  <!-- 正しいパブリック公開用枠組み -->
-  <iframe 
-    src="https://www.coze.com/store/bot/7706099504453828661" 
-    class="chat-iframe"
-    allow="microphone; camera">
-  </iframe>
 </body>
 </html>
