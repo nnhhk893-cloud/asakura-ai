@@ -19,31 +19,66 @@
       align-items: center;
       min-height: 100vh;
       padding: 40px 20px;
+      overflow-x: hidden;
     }
-    .lp-container {
+    
+    /* 画面コンテナ全体のスタイル */
+    .screen-container {
       max-width: 820px;
       width: 100%;
       background: #1f232d;
       border: 1px solid #2d3343;
-      padding: 48px 40px;
+      padding: 56px 40px;
       border-radius: 16px;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
       text-align: center;
+      position: relative;
     }
-    /* 導入動画のスタイル */
-    .intro-video-container {
-      margin-bottom: 32px;
+
+    /* 導入動画セクション（初期表示） */
+    #intro-screen {
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
     }
     .intro-video {
       width: 100%;
-      max-width: 500px;
+      max-width: 520px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       border: 3px solid #4a5568;
       background-color: #000;
+      margin-bottom: 24px;
     }
+    .skip-button {
+      padding: 12px 32px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      color: #a0aec0;
+      background: transparent;
+      border: 1px solid #4a5568;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .skip-button:hover {
+      color: #ffffff;
+      border-color: #cbd5e0;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* メインLPセクション（動画終了後またはスキップ後に表示） */
+    #lp-screen {
+      display: none; /* 最初は非表示 */
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .subtitle {
       font-family: "Helvetica Neue", Arial, sans-serif;
       font-size: 13px;
@@ -68,7 +103,7 @@
       flex-wrap: wrap;
     }
     .avatar-box {
-      display: flex;
+      .display: flex;
       flex-direction: column;
       align-items: center;
     }
@@ -119,39 +154,61 @@
 </head>
 <body>
 
-  <div class="lp-container">
+  <div class="screen-container">
     
-    <!-- 導入部：プロモーション動画（ループなし・コントロールバー付き） -->
-    <div class="intro-video-container">
-      <video src="intro.mp4" class="intro-video" controls playsinline>
+    <!-- 【画面1】最初に流れる導入動画画面 -->
+    <div id="intro-screen">
+      <video id="introVideo" class="intro-video" src="intro.mp4" autoplay muted playsinline>
         お使いのブラウザは動画再生に対応していません。
       </video>
-    </div>
-
-    <div class="subtitle">Asakura Fumio Memorial Museum</div>
-    <h1>朝倉文夫＆キュレーターAIガイド</h1>
-    
-    <div class="avatar-container">
-      <div class="avatar-box">
-        <img src="asakura.png" alt="朝倉文夫先生" class="avatar">
-        <span class="avatar-name">朝倉 文夫</span>
-      </div>
-      <div class="avatar-box">
-        <img src="asuka.png" alt="キュレーター アスカ" class="avatar">
-        <span class="avatar-name">キュレーター アスカ</span>
+      <div>
+        <button class="skip-button" onclick="showLpScreen()">館内へ進む ➔</button>
       </div>
     </div>
 
-    <p class="description">
-      彫刻家・朝倉文夫の生涯や作品、そして自然主義の哲学について、AIガイドが丁寧にお答えします。<br>
-      下のボタンを押して、対話ルームへお進みください。
-    </p>
-    
-    <!-- 正しいプレビュー画面URLを設定したボタン -->
-    <button onclick="window.open('https://www.coze.com/space/7706094358847963189/bot/7706099504453828661', '_blank')" class="chat-button">
-      💬 朝倉文夫＆キュレーターAIと対話する
-    </button>
+    <!-- 【画面2】動画終了後に切り替わるメインLP画面 -->
+    <div id="lp-screen">
+      <div class="subtitle">Asakura Fumio Memorial Museum</div>
+      <h1>朝倉文夫＆キュレーターAIガイド</h1>
+      
+      <div class="avatar-container">
+        <div class="avatar-box">
+          <img src="asakura.png" alt="朝倉文夫先生" class="avatar">
+          <span class="avatar-name">朝倉 文夫</span>
+        </div>
+        <div class="avatar-box">
+          <img src="asuka.png" alt="キュレーター アスカ" class="avatar">
+          <span class="avatar-name">キュレーター アスカ</span>
+        </div>
+      </div>
+
+      <p class="description">
+        彫刻家・朝倉文夫の生涯や作品、そして自然主義の哲学について、AIガイドが丁寧にお答えします。<br>
+        下のボタンを押して、対話ルームへお進みください。
+      </p>
+      
+      <button onclick="window.open('https://www.coze.com/space/7706094358847963189/bot/7706099504453828661', '_blank')" class="chat-button">
+        💬 朝倉文夫＆キュレーターAIと対話する
+      </button>
+    </div>
+
   </div>
+
+  <script>
+    const video = document.getElementById('introVideo');
+    const introScreen = document.getElementById('intro-screen');
+    const lpScreen = document.getElementById('lp-screen');
+
+    function showLpScreen() {
+      introScreen.style.display = 'none';
+      lpScreen.style.display = 'block';
+    }
+
+    // 動画の再生が終了したら自動的にLP画面に切り替わる
+    video.addEventListener('ended', function() {
+      showLpScreen();
+    });
+  </script>
 
 </body>
 </html>
