@@ -12,114 +12,106 @@
       font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
       text-align: center;
       margin: 0;
-      padding: 30px 20px 50px 20px;
+      padding: 50px 20px;
       background-color: #f4f4f4;
       color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
-    .header-card {
-      max-width: 820px;
-      margin: 0 auto 24px auto;
+    .lp-container {
+      max-width: 720px;
+      width: 100%;
       background: #ffffff;
-      padding: 32px 28px;
+      padding: 48px 32px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
     h1 {
       color: #222;
       font-size: 26px;
-      margin: 0 0 24px 0;
+      margin: 0 0 32px 0;
+      line-height: 1.4;
     }
     .avatar-container {
       display: flex;
       justify-content: center;
       gap: 48px;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
     }
-    .avatar-item {
+    .avatar-box {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
       border: 3px solid #e2e8f0;
+      background-color: #edf2f7;
     }
     .avatar-name {
-      margin-top: 10px;
-      font-size: 15px;
+      margin-top: 12px;
+      font-size: 16px;
       font-weight: bold;
-      color: #333;
+      color: #2d3748;
     }
     .description {
-      max-width: 640px;
-      margin: 0 auto 24px auto;
-      color: #444;
-      font-size: 15px;
-      line-height: 1.7;
+      color: #4a5568;
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 0 auto 36px auto;
+      max-width: 580px;
     }
     .chat-button {
       display: inline-block;
-      padding: 14px 28px;
-      font-size: 16px;
+      padding: 18px 40px;
+      font-size: 18px;
       font-weight: bold;
       color: #ffffff;
       background-color: #2b6cb0;
-      border-radius: 30px;
+      border-radius: 40px;
       text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.2s;
+      box-shadow: 0 4px 12px rgba(43, 108, 176, 0.35);
+      transition: background-color 0.2s, transform 0.1s;
     }
     .chat-button:hover {
       background-color: #1a4971;
-    }
-    .chat-iframe {
-      display: block;
-      width: 100%;
-      max-width: 820px;
-      height: 680px;
-      margin: 0 auto;
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-      background-color: #ffffff;
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
 
-  <div class="header-card">
+  <div class="lp-container">
     <h1>朝倉文夫＆キュレーターAIガイドへようこそ！</h1>
     
     <div class="avatar-container">
-      <div class="avatar-item">
+      <div class="avatar-box">
         <img src="asakura.png" alt="朝倉文夫先生" class="avatar">
         <span class="avatar-name">朝倉 文夫</span>
       </div>
-      <div class="avatar-item">
-        <img src="asuka.png" alt="アスカ" class="avatar">
+      <div class="avatar-box">
+        <img src="asuka.png" alt="キュレーター アスカ" class="avatar">
         <span class="avatar-name">キュレーター アスカ</span>
       </div>
     </div>
 
     <p class="description">
       彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。<br>
-      下のチャット画面からお気軽にご質問ください。
+      下のボタンを押して、対話画面へお進みください。
     </p>
-
-    <a href="https://www.coze.com/space/7706099504453828661/bot/7706099504453828661" target="_blank" class="chat-button">
+    
+    <!-- ▼ここの href="..." の中身を、今稼働しているCoze画面のアドレスバーURLに合わせます -->
+    <a href="https://www.coze.com/space/7706099504453828661/bot/7706099504453828661" target="_blank" rel="noopener" class="chat-button">
       💬 朝倉文夫＆キュレーターAIと会話する
     </a>
   </div>
-
-  <iframe 
-    src="https://www.coze.com/store/bot/7706099504453828661" 
-    class="chat-iframe" 
-    allow="microphone; camera">
-  </iframe>
 
 </body>
 </html>
