@@ -3,115 +3,169 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>朝倉文夫＆キュレーターAIガイド</title>
+  <title>朝倉文夫＆キュレーター AIガイド</title>
   <style>
-    body {
-      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      text-align: center;
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 40px 20px;
-      background-color: #f4f4f4;
+      padding: 0;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      background-color: #f4f6f8;
       color: #333;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto 24px auto;
-      background: #ffffff;
-      padding: 32px 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: #222;
-      font-size: 24px;
-      margin: 0 0 24px 0;
-    }
-    .avatar-container {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 20px;
-    }
-    .avatar-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .avatar {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      background-color: #e2e8f0;
-    }
-    .avatar-label {
-      margin-top: 8px;
-      font-weight: bold;
-      font-size: 14px;
-      color: #444;
-    }
-    p {
-      color: #444;
-      line-height: 1.6;
-      margin: 0 auto 24px auto;
-      max-width: 600px;
-    }
-    .chat-button {
-      display: inline-block;
-      padding: 16px 32px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #ffffff;
-      background-color: #2b6cb0;
-      border-radius: 30px;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    .chat-button:hover {
-      background-color: #1a4971;
-    }
-    .chat-iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 620px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    /* ヘッダータイトル */
+    .header-title {
+      text-align: center;
+      padding: 12px 10px 4px;
       background-color: #ffffff;
     }
+    .header-title h1 {
+      font-size: 16px;
+      color: #2c3e50;
+    }
+
+    /* アバター配置エリア */
+    #avatar-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+    .avatar-box {
+      text-align: center;
+      transition: transform 0.3s ease;
+      width: 45%;
+    }
+    .avatar-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      border: 2px solid #fff;
+    }
+    .avatar-name {
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 4px;
+      color: #2d3748;
+    }
+    .avatar-role {
+      font-size: 10px;
+      color: #718096;
+    }
+
+    /* バウンドアニメーション */
+    .bounce {
+      animation: bounce-anim 0.6s infinite alternate;
+    }
+    @keyframes bounce-anim {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* ガイド説明文エリア */
+    .description-box {
+      margin: 10px 15px;
+      padding: 10px 15px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      border-left: 4px solid #3182ce;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .description-box h2 {
+      font-size: 12px;
+      color: #2b6cb0;
+      margin-bottom: 4px;
+    }
+    .description-box p {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #4a5568;
+    }
+
+    /* Cozeチャット表示コンテナ */
+    #coze-chat-container {
+      width: 100%;
+      height: calc(100vh - 220px);
+      min-height: 400px;
+      background-color: #ffffff;
+      border-top: 1px solid #e2e8f0;
+    }
   </style>
+  <!-- Coze Web SDK 公式スクリプト -->
+  <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-core/0.1.0-beta.6/edgeweb.js"></script>
 </head>
 <body>
 
-  <div class="container">
-    <h1>朝倉文夫＆キュレーターAIガイドへようこそ！</h1>
-    
-    <div class="avatar-container">
-      <div class="avatar-box">
-        <img src="asakura.png" alt="朝倉文夫先生" class="avatar">
-        <span class="avatar-label">朝倉 文夫</span>
-      </div>
-      <div class="avatar-box">
-        <img src="asuka.png" alt="アスカ" class="avatar">
-        <span class="avatar-label">キュレーター アスカ</span>
-      </div>
-    </div>
-
-    <p>彫刻家・朝倉文夫先生の生涯や作品、文化遺産の魅力についてAIガイドがわかりやすくお答えします。<br>下のチャット画面、またはボタンからお気軽にご質問ください。</p>
-    
-    <!-- Cozeボット公開ページ直接起動ボタン -->
-    <a href="https://www.coze.com/store/bot/7706099504453828661" target="_blank" rel="noopener" class="chat-button">
-      💬 朝倉文夫＆キュレーターAIと会話する
-    </a>
+  <!-- タイトル -->
+  <div class="header-title">
+    <h1>朝倉文夫記念館 AI対話ガイド</h1>
   </div>
 
-  <!-- Cozeチャット埋め込み枠 -->
-  <iframe 
-    src="https://www.coze.com/store/bot/7706099504453828661" 
-    class="chat-iframe" 
-    allow="microphone; camera">
-  </iframe>
+  <!-- アバター表示エリア -->
+  <div id="avatar-container">
+    <div class="avatar-box" id="asuka-box">
+      <img src="asuka.png" alt="学芸員アスカ" class="avatar-img">
+      <div class="avatar-name">学芸員アスカ</div>
+      <div class="avatar-role">作品の魅力を質問</div>
+    </div>
+    <div class="avatar-box" id="asakura-box">
+      <img src="asakura.png" alt="朝倉文夫" class="avatar-img">
+      <div class="avatar-name">彫刻家 朝倉文夫</div>
+      <div class="avatar-role">本人が直接解説</div>
+    </div>
+  </div>
 
+  <!-- ガイド説明文 -->
+  <div class="description-box">
+    <h2>■ AIガイドの使い方</h2>
+    <p>
+      学芸員のアスカと彫刻家・朝倉文夫が掛け合いをしながら作品の魅力を解説します。<br>
+      下のチャット欄から自由に質問してみてください。
+    </p>
+  </div>
+
+  <!-- チャット埋め込み用エリア -->
+  <div id="coze-chat-container"></div>
+
+  <script>
+    // 画面読み込み完了後にWeb SDKを初期化
+    window.addEventListener('DOMContentLoaded', function() {
+      if (typeof CozeWebSDK !== 'undefined') {
+        new CozeWebSDK.WebChatClient({
+          config: {
+            bot_id: '7706099504453828661',
+          },
+          componentProps: {
+            title: '朝倉文夫＆キュレーター',
+          },
+          el: document.getElementById('coze-chat-container'),
+        });
+      }
+    });
+
+    // アバターバウンド演出制御
+    window.addEventListener('message', function(event) {
+      const asuka = document.getElementById('asuka-box');
+      const asakura = document.getElementById('asakura-box');
+
+      if (event.data && event.data.speaker === 'asuka') {
+        asuka.classList.add('bounce');
+        asakura.classList.remove('bounce');
+      } else if (event.data && event.data.speaker === 'asakura') {
+        asakura.classList.add('bounce');
+        asuka.classList.remove('bounce');
+      }
+    });
+  </script>
 </body>
 </html>
