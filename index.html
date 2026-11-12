@@ -91,8 +91,9 @@
       color: #1a202c;
       background-color: #e2e8f0;
       border-radius: 40px;
-      text-decoration: none;
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      border: none;
       transition: all 0.2s ease;
     }
     .chat-button:hover {
@@ -124,10 +125,9 @@
       下のボタンを押して、対話ルームへお進みください。
     </p>
     
-    <!-- Coze編集3画面（ボット管理画面）へ確実に飛ぶリンク -->
-    <a href="https://www.coze.com/space/7706099504453828661/bot/7706099504453828661" target="_blank" rel="noopener" class="chat-button">
+    <button onclick="window.open('https://www.coze.com/space/7706099504453828661/bot/7706099504453828661', '_blank')" class="chat-button">
       💬 朝倉文夫＆キュレーターAIと対話する
-    </a>
+    </button>
   </div>
 
 </body>
