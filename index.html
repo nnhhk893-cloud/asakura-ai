@@ -25,10 +25,24 @@
       width: 100%;
       background: #1f232d;
       border: 1px solid #2d3343;
-      padding: 56px 40px;
+      padding: 48px 40px;
       border-radius: 16px;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
       text-align: center;
+    }
+    /* 導入動画のスタイル */
+    .intro-video-container {
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+    }
+    .intro-video {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      border: 3px solid #4a5568;
+      background-color: #000;
     }
     .subtitle {
       font-family: "Helvetica Neue", Arial, sans-serif;
@@ -106,6 +120,14 @@
 <body>
 
   <div class="lp-container">
+    
+    <!-- 導入部：プロモーション動画（ループなし・コントロールバー付き） -->
+    <div class="intro-video-container">
+      <video src="intro.mp4" class="intro-video" controls playsinline>
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+    </div>
+
     <div class="subtitle">Asakura Fumio Memorial Museum</div>
     <h1>朝倉文夫＆キュレーターAIガイド</h1>
     
