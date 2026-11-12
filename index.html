@@ -21,30 +21,29 @@
       padding: 40px 20px;
       overflow-x: hidden;
     }
-    
-    /* 画面コンテナ全体のスタイル */
     .screen-container {
       max-width: 820px;
       width: 100%;
       background: #1f232d;
       border: 1px solid #2d3343;
-      padding: 56px 40px;
+      padding: 48px 40px;
       border-radius: 16px;
       box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
       text-align: center;
-      position: relative;
     }
-
-    /* 導入動画セクション（初期表示） */
     #intro-screen {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+    /* 動画プレイヤーのサイズと見た目を綺麗に整える */
     .intro-video {
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
       border: 3px solid #4a5568;
@@ -67,18 +66,14 @@
       border-color: #cbd5e0;
       background-color: rgba(255, 255, 255, 0.05);
     }
-
-    /* メインLPセクション（動画終了後またはスキップ後に表示） */
     #lp-screen {
-      display: none; /* 最初は非表示 */
+      display: none;
       animation: fadeIn 0.8s ease forwards;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .subtitle {
       font-family: "Helvetica Neue", Arial, sans-serif;
       font-size: 13px;
@@ -103,7 +98,7 @@
       flex-wrap: wrap;
     }
     .avatar-box {
-      .display: flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
     }
@@ -156,7 +151,7 @@
 
   <div class="screen-container">
     
-    <!-- 【画面1】最初に流れる導入動画画面 -->
+    <!-- 導入動画画面 -->
     <div id="intro-screen">
       <video id="introVideo" class="intro-video" src="intro.mp4" autoplay muted playsinline>
         お使いのブラウザは動画再生に対応していません。
@@ -166,7 +161,7 @@
       </div>
     </div>
 
-    <!-- 【画面2】動画終了後に切り替わるメインLP画面 -->
+    <!-- メインLP画面 -->
     <div id="lp-screen">
       <div class="subtitle">Asakura Fumio Memorial Museum</div>
       <h1>朝倉文夫＆キュレーターAIガイド</h1>
@@ -204,9 +199,14 @@
       lpScreen.style.display = 'block';
     }
 
-    // 動画の再生が終了したら自動的にLP画面に切り替わる
+    // 動画が終了したらLPへ切り替え
     video.addEventListener('ended', function() {
       showLpScreen();
+    });
+
+    // 万が一動画の読み込みや自動再生でエラーが起きた場合もボタンで進めるようにする
+    video.addEventListener('error', function() {
+      console.log('動画読み込みエラー、スキップボタンを利用できます');
     });
   </script>
 
