@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>朝倉文夫＆キュレーターAIガイド</title>
+  <title>朝倉AI資料館｜対話型AIガイド</title>
   <style>
     * {
       box-sizing: border-box;
@@ -37,7 +37,6 @@
       align-items: center;
       justify-content: center;
     }
-    /* 【修正】縦長動画（9:16）が途切れず全体が綺麗に収まるよう調整 */
     .intro-video {
       width: 100%;
       max-width: 340px;
@@ -145,6 +144,16 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
     }
+    /* 個人制作・非公式である旨の注記スタイル */
+    .disclaimer {
+      margin-top: 44px;
+      padding-top: 20px;
+      border-top: 1px solid #2d3343;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #718096;
+    }
   </style>
 </head>
 <body>
@@ -157,14 +166,14 @@
         お使いのブラウザは動画再生に対応していません。
       </video>
       <div>
-        <button class="skip-button" onclick="showLpScreen()">館内へ進む ➔</button>
+        <button class="skip-button" onclick="showLpScreen()">資料館へ進む ➔</button>
       </div>
     </div>
 
     <!-- メインLP画面 -->
     <div id="lp-screen">
-      <div class="subtitle">Asakura Fumio Memorial Museum</div>
-      <h1>朝倉文夫＆キュレーターAIガイド</h1>
+      <div class="subtitle">Asakura AI Digital Archive</div>
+      <h1>朝倉AI資料館</h1>
       
       <div class="avatar-container">
         <div class="avatar-box">
@@ -185,6 +194,10 @@
       <button onclick="window.open('https://www.coze.com/space/7706094358847963189/bot/7706099504453828661', '_blank')" class="chat-button">
         💬 朝倉文夫＆キュレーターAIと対話する
       </button>
+
+      <div class="disclaimer">
+        ※当サイト「朝倉AI資料館」は、個人によるAI技術の検証および作品研究を目的として制作された架空・非公式のデジタル資料館です。実在の記念館・関連施設とは一切関係ございません。
+      </div>
     </div>
 
   </div>
@@ -199,7 +212,6 @@
       lpScreen.style.display = 'block';
     }
 
-    // 動画が終了したらLPへ切り替え
     video.addEventListener('ended', function() {
       showLpScreen();
     });
